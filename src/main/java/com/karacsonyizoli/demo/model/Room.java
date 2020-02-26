@@ -128,4 +128,22 @@ public class Room {
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", slug='" + slug + '\'' +
+                ", type='" + type + '\'' +
+                ", price=" + price +
+                ", size=" + size +
+                ", capacity=" + capacity +
+                ", breakfast=" + breakfast +
+                ", featured=" + featured +
+                ", description='" + description + '\'' +
+                ", extras='" + extras + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                '}';
+    }
 }
