@@ -18,14 +18,14 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 class ResortApiApplicationTests {
 
-
 	@Autowired
-	RoomController roomController;
+	private RoomController roomController;
 
 	@Test
 	public void testGetters(){
 		List<Room> roomList = roomController.listUsers();
 		roomList.forEach(room -> System.out.println(room.toString()));
+		assertEquals(roomList.size(),13);
 		assertEquals(roomList.get(0).getId(),1);
 	}
 

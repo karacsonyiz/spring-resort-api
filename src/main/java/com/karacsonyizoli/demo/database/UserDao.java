@@ -1,5 +1,6 @@
 package com.karacsonyizoli.demo.database;
 import com.karacsonyizoli.demo.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -11,11 +12,8 @@ import java.util.Optional;
 @Repository
 public class UserDao {
 
+    @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    public UserDao(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     private static class UserMapper implements RowMapper<User> {
         @Override
@@ -33,6 +31,7 @@ public class UserDao {
     public List<User> listUsers() {
         return jdbcTemplate.query("select id, name, password, email, enabled, role from users",new UserMapper());
     }
+
     public Optional<User> findUserByUserName(String name) {
         try {
             User user = jdbcTemplate.queryForObject("select id, name, password, email, enabled, role from users where name = ?", new UserMapper(), name);

@@ -2,6 +2,7 @@ package com.karacsonyizoli.demo.database;
 
 import com.karacsonyizoli.demo.model.Room;
 import com.karacsonyizoli.demo.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -13,11 +14,8 @@ import java.util.List;
 @Repository
 public class RoomDao {
 
+    @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    public RoomDao(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     public List<Room> listRooms() {
         return jdbcTemplate.query("select id, name, slug, type, capacity, price, size, breakfast, featured, description, extras0, fileurl1  from rooms",new RoomMapper());

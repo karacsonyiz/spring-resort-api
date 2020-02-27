@@ -3,17 +3,18 @@ package com.karacsonyizoli.demo.model;
 public class Room {
 
     private int id;
-    private String name;
-    private String slug;
-    private String type;
     private int price;
     private int size;
     private int capacity;
     private boolean breakfast;
     private boolean featured;
+    private String name;
+    private String slug;
+    private String type;
     private String description;
     private String extras;
     private String imgUrl;
+
 
     public Room() {
     }
