@@ -1,11 +1,11 @@
 package com.karacsonyizoli.demo.service;
 
 import com.karacsonyizoli.demo.database.UserDao;
-import com.karacsonyizoli.demo.model.User;
+import com.karacsonyizoli.demo.database.UserRepository;
+import com.karacsonyizoli.demo.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -13,12 +13,16 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
-    public List<User> listUsers() {
-        return userDao.listUsers();
+    @Autowired
+    private UserRepository userRepository;
+
+    public List<UserEntity> listUsers() {
+        return userRepository.findAll();
     }
 
-    public Optional<User> findUserByUserName(String name) {
-        return userDao.findUserByUserName(name);
+    public UserEntity findUserByUserName(String name) {
+        UserEntity entity = userRepository.findUserByName(name);
+        return entity;
     }
 
 }

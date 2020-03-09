@@ -45,8 +45,8 @@ public class ResortApiApplication extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth, DataSource dataSource, PasswordEncoder passwordEncoder) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder)
-				.usersByUsernameQuery("select name, password, enabled from users where name=?")
-				.authoritiesByUsernameQuery("select name, role from users where name=?");
+				.usersByUsernameQuery("select id, name, password, enabled from users where name=?")
+				.authoritiesByUsernameQuery("select id, name, role from users where name=?");
 	}
 
 	@Bean

@@ -32,13 +32,9 @@ public class UserDao {
         return jdbcTemplate.query("select id, name, password, email, enabled, role from users",new UserMapper());
     }
 
-    public Optional<User> findUserByUserName(String name) {
-        try {
+    public User findUserByUserName(String name) {
             User user = jdbcTemplate.queryForObject("select id, name, password, email, enabled, role from users where name = ?", new UserMapper(), name);
-            return Optional.of(user);
-        } catch (EmptyResultDataAccessException erdae) {
-            return Optional.empty();
-        }
+            return user;
     }
 
 }

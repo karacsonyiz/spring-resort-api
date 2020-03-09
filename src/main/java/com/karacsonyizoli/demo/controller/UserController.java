@@ -1,12 +1,12 @@
 package com.karacsonyizoli.demo.controller;
 
-
-import com.karacsonyizoli.demo.model.User;
+import com.karacsonyizoli.demo.entity.UserEntity;
 import com.karacsonyizoli.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,24 +19,25 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    public List<User> listUsers() {
+    @RequestMapping("/api/users")
+    public List<UserEntity> listUsers() {
         return userService.listUsers();
     }
 
     @RequestMapping("/api/user/{name}")
-    public User findUserByUserName(String name) {
-        return userService.findUserByUserName(name).get();
+    public UserEntity findUserByUserName(@PathVariable String name) {
+        return userService.findUserByUserName(name);
     }
 
     @RequestMapping("/api/user")
-    public User getUser(Authentication authentication) {
+    public UserEntity getUser(Authentication authentication) {
         if (authentication == null) {
             return null;
         }
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String name = userDetails.getUsername();
         String role = new ArrayList<GrantedAuthority>(userDetails.getAuthorities()).get(0).getAuthority();
-        User foundUser = userService.findUserByUserName(name).get();
-        return new User(foundUser.getId(),foundUser.getName(),foundUser.getPassword(),foundUser.getEmail(),foundUser.getRole());
+        UserEntity foundUser = userService.findUserByUserName(name);
+        return new UserEntity(foundUser.getId(),foundUser.getName(),foundUser.getPassword(),foundUser.getEmail(),foundUser.getEnabled(),foundUser.getRole());
     }
 }
