@@ -5,6 +5,7 @@ import com.karacsonyizoli.demo.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -15,12 +16,12 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
 
-    @RequestMapping("/api/rooms")
+    @RequestMapping(value = "/api/rooms", method = RequestMethod.GET)
     public List<RoomEntity> listUsers() {
         return roomService.list();
     }
 
-    @RequestMapping("/api/room/{id}")
+    @RequestMapping(value = "/api/room/{id}", method = RequestMethod.GET)
     public RoomEntity getRoomById(@PathVariable int id){
         return roomService.getRoom(id).get();
     }

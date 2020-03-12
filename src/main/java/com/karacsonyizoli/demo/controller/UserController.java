@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -19,17 +20,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/api/users")
+    @RequestMapping(value = "/api/users", method = RequestMethod.GET)
     public List<UserEntity> listUsers() {
         return userService.listUsers();
     }
 
-    @RequestMapping("/api/user/{name}")
+    @RequestMapping(value = "/api/user/{name}", method = RequestMethod.GET)
     public UserEntity findUserByUserName(@PathVariable String name) {
         return userService.findUserByUserName(name);
     }
 
-    @RequestMapping("/api/user")
+    @RequestMapping(value ="/api/user", method = RequestMethod.GET)
     public UserEntity getUser(Authentication authentication) {
         if (authentication == null) {
             return null;

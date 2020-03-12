@@ -1,13 +1,11 @@
 package com.karacsonyizoli.demo.database;
 import com.karacsonyizoli.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import java.sql.*;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class UserDao {
@@ -36,6 +34,7 @@ public class UserDao {
             User user = jdbcTemplate.queryForObject("select id, name, password, email, enabled, role from users where name = ?", new UserMapper(), name);
             return user;
     }
+
 
 }
 

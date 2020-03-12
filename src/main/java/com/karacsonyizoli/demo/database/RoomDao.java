@@ -1,7 +1,6 @@
 package com.karacsonyizoli.demo.database;
 
 import com.karacsonyizoli.demo.model.Room;
-import com.karacsonyizoli.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;

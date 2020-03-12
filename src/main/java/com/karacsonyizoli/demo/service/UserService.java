@@ -1,6 +1,5 @@
 package com.karacsonyizoli.demo.service;
 
-import com.karacsonyizoli.demo.database.UserDao;
 import com.karacsonyizoli.demo.database.UserRepository;
 import com.karacsonyizoli.demo.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +10,16 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    private UserDao userDao;
-
-    @Autowired
     private UserRepository userRepository;
 
     public List<UserEntity> listUsers() {
+        System.out.println("sajt4");
         return userRepository.findAll();
     }
 
     public UserEntity findUserByUserName(String name) {
-        UserEntity entity = userRepository.findUserByName(name);
-        return entity;
+        System.out.println("sajt5");
+        return  userRepository.findUserByName(name);
     }
 
 }

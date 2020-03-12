@@ -1,11 +1,6 @@
 package com.karacsonyizoli.demo.entity;
 
-import com.karacsonyizoli.demo.model.UserRole;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users", schema = "demo")
@@ -15,6 +10,7 @@ public class UserEntity {
     @GeneratedValue
     private long id;
     private String name;
+    @Column(name = "password", nullable = false)
     private String password;
     private String email;
     private int enabled;
