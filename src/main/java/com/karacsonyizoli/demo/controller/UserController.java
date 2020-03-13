@@ -3,6 +3,7 @@ package com.karacsonyizoli.demo.controller;
 import com.karacsonyizoli.demo.entity.UserEntity;
 import com.karacsonyizoli.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @RestController
 public class UserController {
@@ -26,8 +28,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/api/user/{name}", method = RequestMethod.GET)
-    public UserEntity findUserByUserName(@PathVariable String name) {
-        return userService.findUserByUserName(name);
+    public ResponseEntity<UserEntity> findUserByUserName(@PathVariable String name) {
+        UserEntity userEntity = userService.findUserByUserName(name);
+        if(userEntity != null){
+            return ResponseEntity.ok(userEntity);
+        }
+        return ResponseEntity.badRequest().build();
     }
 
     @RequestMapping(value ="/api/user", method = RequestMethod.GET)

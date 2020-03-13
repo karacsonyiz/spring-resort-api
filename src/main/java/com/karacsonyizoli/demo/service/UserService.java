@@ -5,6 +5,7 @@ import com.karacsonyizoli.demo.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -13,13 +14,11 @@ public class UserService {
     private UserRepository userRepository;
 
     public List<UserEntity> listUsers() {
-        System.out.println("sajt4");
         return userRepository.findAll();
     }
 
     public UserEntity findUserByUserName(String name) {
-        System.out.println("sajt5");
-        return  userRepository.findUserByName(name);
+        UserEntity userEntity = userRepository.findUserByName(name);
+            return userRepository.findUserByName(name);
     }
-
 }

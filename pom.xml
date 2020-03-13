@@ -9,7 +9,7 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.karacsonyizoli</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>resort</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demo</name>
 	<description>API for React Resort Application</description>

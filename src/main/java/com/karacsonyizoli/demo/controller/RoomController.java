@@ -17,7 +17,7 @@ public class RoomController {
     private RoomService roomService;
 
     @RequestMapping(value = "/api/rooms", method = RequestMethod.GET)
-    public List<RoomEntity> listUsers() {
+    public List<RoomEntity> listRooms() {
         return roomService.list();
     }
 

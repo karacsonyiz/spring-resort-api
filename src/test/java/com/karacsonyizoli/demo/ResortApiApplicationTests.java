@@ -1,8 +1,12 @@
 package com.karacsonyizoli.demo;
 
 import com.karacsonyizoli.demo.controller.RoomController;
+import com.karacsonyizoli.demo.controller.UserController;
 import com.karacsonyizoli.demo.entity.RoomEntity;
-import com.karacsonyizoli.demo.model.Room;
+import com.karacsonyizoli.demo.entity.UserEntity;
+import com.karacsonyizoli.demo.model.UserRole;
+import com.karacsonyizoli.demo.service.RoomService;
+import com.karacsonyizoli.demo.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +22,24 @@ import static org.junit.Assert.assertEquals;
 class ResortApiApplicationTests {
 
 	@Autowired
-	private RoomController roomController;
+	private RoomService roomService;
+
+	@Autowired
+	private UserService userService;
 
 	@Test
-	public void testGetters(){
-		List<RoomEntity> roomList = roomController.listUsers();
-		roomList.forEach(room -> System.out.println(room.toString()));
+	public void testListRooms(){
+		List<RoomEntity> roomList = roomService.list();
 		assertEquals(roomList.size(),13);
 		assertEquals(roomList.get(0).getId(),1);
+	}
+
+	@Test
+	public void testUser(){
+		UserEntity user = userService.findUserByUserName("user");
+		UserEntity admin = userService.findUserByUserName("admin");
+		assertEquals(user.getRole(), UserRole.ROLE_USER.name());
+		assertEquals(admin.getRole(), UserRole.ROLE_ADMIN.name());
 	}
 
 }
