@@ -7,10 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +31,16 @@ public class UserController {
             return ResponseEntity.ok(userEntity);
         }
         return ResponseEntity.badRequest().build();
+    }
+
+    @RequestMapping(value = "/api/createuser", method = RequestMethod.POST)
+    public ResponseEntity<String> createUser(@RequestBody UserEntity user){
+        return userService.createUser(user);
+    }
+
+    @RequestMapping(value = "/api/updateuser", method = RequestMethod.POST)
+    public ResponseEntity<String> updateUser(@RequestBody UserEntity user){
+        return userService.updateUser(user);
     }
 
     @RequestMapping(value ="/api/user", method = RequestMethod.GET)
